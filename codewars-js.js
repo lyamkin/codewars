@@ -76,3 +76,55 @@ function isValidWalk(walk) {
       return false;
    }
  }
+
+ /* The maximum sum subarray problem consists in finding the maximum sum of a 
+   contiguous subsequence in an array or list of integers:
+         maxSequence([-2, 1, -3, 4, -1, 2, 1, -5, 4])
+         should be 6: [4, -1, 2, 1]
+   Easy case is when the list is made up of only positive numbers and the maximum 
+   sum is the sum of the whole array. If the list is made up of only negative numbers, return 0 instead.
+   Empty list is considered to have zero greatest sum. Note that the empty list or array is also a valid sublist/subarray.
+*/
+
+// My solution
+
+var maxSequence = function(arr){
+   var subArr, max, sumSubArr = [];
+
+   // slice subarrays and find summ for each subarray
+   for(var i = 0; i < arr.length; i++) {
+      for(var j = i+1; j <= arr.length; j++) {
+         subArr = arr.slice(i,j);
+         sumSubArr.push(subArr.reduce((acc,curr) => {
+            return acc + curr;
+         }));
+      }
+   }
+
+   if(sumSubArr.length !== 0) {
+      // fund max in sumSubArr
+      max = sumSubArr.reduce((num1,num2) => {
+         return Math.max(num1,num2);
+      });
+   } else {
+      max = 0;
+   };
+   return max = (max < 0) ? 0 : max;
+};
+
+// Best practise
+
+var maxSequence = function(arr){
+  var min = 0, ans = 0, i, sum = 0;
+  for (i = 0; i < arr.length; ++i) {
+    sum += arr[i];
+    min = Math.min(sum, min);
+    ans = Math.max(ans, sum - min);
+    
+  }
+  return ans;
+}
+
+
+
+
