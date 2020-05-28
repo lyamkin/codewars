@@ -125,6 +125,47 @@ var maxSequence = function(arr){
   return ans;
 }
 
+/* Given an array, find the integer that appears an odd number of times.
+   There will always be only one integer that appears an odd number of times.
+*/
+
+// My solution
+
+function findOdd(A) {
+   let counts = {}, target = 0;
+   sortA = A.sort((a,b) => a-b);
+
+   // Count each element from array
+   sortA.forEach((element) => {
+      counts[element] = (counts[element] || 0) + 1;
+   });
+   
+   // Find Odd element 
+   for (var key in counts) {
+      if((counts[key] % 2) > 0) {
+         target = key;
+      }
+   }
+   return parseInt(target);
+ }
+
+ // Best practice1
+
+ const findOdd = (xs) => xs.reduce((a, b) => a ^ b);
+
+ // Best practice2
+ function findOdd(A) {
+  var obj = {};
+  A.forEach(function(el){
+    obj[el] ? obj[el]++ : obj[el] = 1;
+  });
+  
+  for(prop in obj) {
+    if(obj[prop] % 2 !== 0) return Number(prop);
+  }
+}
+
+
 
 
 
