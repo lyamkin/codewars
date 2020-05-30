@@ -197,5 +197,31 @@ function openOrSenior(data){
 //  openOrSenior([[18, 20],[45, 2],[61, 12],[37, 6],[21, 21],[78, 9]]);
 
 
+/* 
+ Move the first letter of each word to the end of it, then add "ay" to the end of the word. 
+ Leave punctuation marks untouched.
+
+Examples
+pigIt('Pig latin is cool'); // igPay atinlay siay oolcay
+pigIt('Hello world !');     // elloHay orldway !
+*/
+
+// My solution
+
+function pigIt(str){
+   let newstr;
+   newstr = str.split(' ').map(cur => {
+      return (cur.match(/^[.,:!?]/)) ? cur : cur.substring(1) + cur[0] + 'ay';
+   }).join(' ');
+   return newstr
+ }
+
+// Best practice
+
+ function pigIt(str){
+   return str.replace(/(\w)(\w*)(\s|$)/g, "\$2\$1ay\$3")
+ }
+
+pigIt('Pig latin is cool !!!');
 
 
