@@ -244,3 +244,39 @@ function createPhoneNumber(numbers){
 console.log(createPhoneNumber([1, 2, 3, 4, 5, 6, 7, 8, 9, 0]));
 
 
+/*
+   A pangram is a sentence that contains every single letter of the alphabet at least once. 
+   For example, the sentence "The quick brown fox jumps over the lazy dog" is a pangram, 
+   because it uses the letters A-Z at least once (case is irrelevant).
+   Given a string, detect whether or not it is a pangram. Return True if it is, False if not. Ignore numbers and punctuation.
+ */
+// My solution
+
+function isPangram(string){
+   const pattern = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
+   'p','q','r','s','t','u','v','w','x','w','z'];
+   let regex;
+   string = string.toLowerCase();
+
+   rez = pattern.map(cur => {
+      regex = RegExp(`${cur}`);
+      return regex.test(string);
+     
+   });
+   return !rez.includes(false);
+ }
+
+
+// Best practice
+
+function isPangram(string){
+   string = string.toLowerCase();
+   return "abcdefghijklmnopqrstuvwxyz".split("").every(function(x){
+     return string.indexOf(x) !== -1;
+   });
+ }
+
+//  var string = "The quick brown fox jumps over the lazy dog."
+ var string = "This is not a pangram";
+console.log(isPangram(string));
+
