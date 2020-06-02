@@ -377,5 +377,26 @@ function findEvenIndex(arr)
 findEvenIndex([20,10,30,10,10,15,35]);
 
 
+/*
+   Write a function called that takes a string of parentheses, and determines if the order 
+   of the parentheses is valid. The function should return true if the string is valid, and 
+   false if it's invalid.
+*/
+
+function validParentheses(parens){
+   let counter = 0;
+   
+   parens.split('').some(element => {
+    
+      element === '(' ? counter++ : counter--;
+      
+      // if counter negative it means the order is wrong. Closed without open. Stop iterations
+      return counter < 0;
+   });
+   // counter should be 0 at the end
+   return counter == 0;
+}
+
+
 
 
