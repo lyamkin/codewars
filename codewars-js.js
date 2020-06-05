@@ -414,6 +414,34 @@ var moveZeros = function (arr) {
 
  console.log(moveZeros([1,2,0,1,0,1,0,3,0,1]));
 
+ /* 
+   Write a function named first_non_repeating_letter that takes a string input, and returns the first 
+   character that is not repeated anywhere in the string.
+   For example, if given the input 'stress', the function should return 't', since the letter t only 
+   occurs once in the string, and occurs first in the string.
+   As an added challenge, upper- and lowercase letters are considered the same character, but the 
+   function should return the correct case for the initial letter. For example, the input 'sTreSS' 
+   should return 'T'.
+   If a string contains all repeating characters, it should return an empty string ("") or None -- 
+   see sample tests.
+*/
+
+function firstNonRepeatingLetter(s) {
+
+   let lowerstr, index = -1;
+   lowerstr = s.toLowerCase();
+
+   lowerstr.split('').some((cur,i,arr) => {
+      arr.indexOf(cur) === arr.lastIndexOf(cur) ? index = i : index = -1;
+
+      return index !== -1;
+   });
+
+   return index !== -1 ? s[index] : "";
+ }
+
+ console.log(firstNonRepeatingLetter(''));
+
 
 
 
